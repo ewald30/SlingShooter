@@ -1,0 +1,96 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Sprites/Mobs/Mob4_SkullFlame/skull_flame3.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Mobs/Mob4_SkullFlame/skull_flame_2.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/SkullFlameMob.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/Mobs/Mob4_SkullFlame/skull_flame_1.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/SkullFlameArea2d.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/Mobs/Mob4_SkullFlame/skull_flame_hit.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 8.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "dummy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 0.362144, 0.155357, 0.575527, 1, 0.885585, 0.809816, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+min_value = -400.0
+max_value = 400.0
+_data = [ Vector2( 0.0220126, 400 ), 0.0, 0.0, 0, 0, Vector2( 0.490566, -313.099 ), 0.0, 0.0, 0, 0, Vector2( 1, -168.955 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+max_value = 2.5
+_data = [ Vector2( 0, 2.5 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.543383 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 2
+emission_box_extents = Vector3( 10, 10, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+linear_accel_random = 0.2
+linear_accel_curve = SubResource( 6 )
+scale = 3.0
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 4 )
+
+[node name="SkullFlameMob" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="SkullFlameMobSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 4.8288, -18.8897 )
+scale = Vector2( 0.4, 0.4 )
+frames = SubResource( 1 )
+animation = "hit"
+playing = true
+
+[node name="SkullFlameArea2d" type="Area2D" parent="SkullFlameMobSprite"]
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SkullFlameMobSprite/SkullFlameArea2d"]
+scale = Vector2( 7.5, 10 )
+shape = SubResource( 2 )
+
+[node name="ExplosionParticles" type="Particles2D" parent="SkullFlameMobSprite/SkullFlameArea2d/CollisionShape2D"]
+emitting = false
+amount = 200
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+visibility_rect = Rect2( -20, -20, 200, 200 )
+process_material = SubResource( 9 )
+
+[node name="Timer" type="Timer" parent="."]
+[connection signal="area_entered" from="SkullFlameMobSprite/SkullFlameArea2d" to="." method="CollidedWithArea"]
+[connection signal="timeout" from="Timer" to="." method="ExplodeAnimationTimeout"]

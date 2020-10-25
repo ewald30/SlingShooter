@@ -1,0 +1,43 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/Projectile1Area2D.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Arrow.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/1x/Rock1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/1x/Rock2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/1x/Rock6.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/1x/Rock4.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/1x/Rock7.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/1x/Rock3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/1x/Rock5.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Rotate",
+"speed": 10.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 300.0
+
+[node name="ProjectileType1" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 11.4427, -4.36978 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "Rotate"
+frame = 4
+playing = true
+
+[node name="Area2D" type="Area2D" parent="Sprite"]
+script = ExtResource( 1 )
+damage = 50
+type = "player_projectile"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+scale = Vector2( 0.1, 0.1 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="Sprite/Area2D" to="." method="CollidedWithArea"]

@@ -1,0 +1,937 @@
+[gd_scene load_steps=64 format=2]
+
+[ext_resource path="res://Fonts/FREAKSOFNATUREMASSIVE.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Global.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Emitters.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/PlayerEmitter.gd" type="Script" id=4]
+[ext_resource path="res://Fonts/BebasNeue-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/GameOverScreen.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Background.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Menu1Buttons.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/MainMenuNode.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/UpgradeMenuNode.gd" type="Script" id=12]
+[ext_resource path="res://Fonts/FREAKSOFNATURE.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Scripts/MenuBackgroundNode.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/StaredBackgroundNode2.gd" type="Script" id=15]
+[ext_resource path="res://Sprites/UpgradeMenuContainer.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Character/CharacterRIghtNight.png" type="Texture" id=17]
+[ext_resource path="res://backgroundv2FInalCabin.JPG" type="Texture" id=18]
+[ext_resource path="res://Scripts/RichTextLabel.gd" type="Script" id=19]
+[ext_resource path="res://Sprites/Character/CharacterLeftNIght.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Character/CharacterUp1.png" type="Texture" id=21]
+[ext_resource path="res://backgroundv2FInalCabinBLUR.jpg" type="Texture" id=22]
+[ext_resource path="res://Sprites/Character/CharacterLeft2.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/1x/BackArrow.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/1x/TryAgainArrow.png" type="Texture" id=25]
+[ext_resource path="res://Scripts/ScoreCounter.gd" type="Script" id=26]
+[ext_resource path="res://Fonts/caveat-67.tres" type="DynamicFont" id=27]
+[ext_resource path="res://Sprites/1x/FireWood.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/1x/BackButtonPressed.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/1x/TryAgainArrowPressed.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Character/CharacterUp3.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Character/CharacterUp4.png" type="Texture" id=32]
+[ext_resource path="res://Scripts/DifficultyMenuNode.gd" type="Script" id=33]
+[ext_resource path="res://Sprites/1x/PauseButtonPressed.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/1x/PauseButton.png" type="Texture" id=35]
+[ext_resource path="res://Background/backgroundv2Night.JPG" type="Texture" id=36]
+[ext_resource path="res://Sprites/Character/CharacterUpNight2.png" type="Texture" id=37]
+[ext_resource path="res://Sprites/Character/CharacterUpNight1.png" type="Texture" id=38]
+[ext_resource path="res://Sprites/Character/CharacterUpNight3.png" type="Texture" id=39]
+[ext_resource path="res://Scripts/BossFightBackground.gd" type="Script" id=40]
+[ext_resource path="res://Sprites/Character/CharacterUpNight4.png" type="Texture" id=41]
+[ext_resource path="res://Sprites/Character/CharacterRight.png" type="Texture" id=42]
+[ext_resource path="res://Sprites/Character/CharacterUp2.png" type="Texture" id=43]
+[ext_resource path="res://Scripts/BossFIghtEmitters.gd" type="Script" id=44]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 42 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 43 ), ExtResource( 31 ), ExtResource( 43 ), ExtResource( 21 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.244444, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.990824, 0.482618, 1, 1, 0.541998, 0.241309, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.194797 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+trail_size_modifier = SubResource( 7 )
+emission_shape = 2
+emission_box_extents = Vector3( 10, 15, 1 )
+flag_disable_z = true
+spread = 176.38
+gravity = Vector3( 0, -90, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+angular_velocity = 10.0
+orbit_velocity = -0.1
+orbit_velocity_random = 1.0
+linear_accel = 1.0
+radial_accel = 0.2
+angle = 100.0
+angle_random = 1.0
+scale = 10.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 20 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "left",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "right",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 38 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 41 ), ExtResource( 41 ), ExtResource( 38 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=10]
+size = 80
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 60
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 60
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 60
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 67
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 60
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 60
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 60
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 60
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 50
+font_data = ExtResource( 13 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="MenuBackgroundNode" type="Node2D" parent="Background"]
+script = ExtResource( 14 )
+
+[node name="Sprite" type="Sprite" parent="Background/MenuBackgroundNode"]
+position = Vector2( 6.68167, 512.901 )
+z_index = -2
+texture = ExtResource( 22 )
+offset = Vector2( 280, 0 )
+
+[node name="bkd_tween" type="Tween" parent="Background/MenuBackgroundNode"]
+
+[node name="StaredBackgroundNode" type="Node2D" parent="Background"]
+script = ExtResource( 15 )
+
+[node name="Sprite" type="Sprite" parent="Background/StaredBackgroundNode"]
+position = Vector2( -568, 512 )
+texture = ExtResource( 18 )
+offset = Vector2( 280, 0 )
+
+[node name="Character" type="AnimatedSprite" parent="Background/StaredBackgroundNode"]
+position = Vector2( -280, 890 )
+scale = Vector2( 0.752, 0.67 )
+frames = SubResource( 1 )
+animation = "right"
+
+[node name="Back" type="TextureButton" parent="Background/StaredBackgroundNode"]
+margin_left = -113.487
+margin_top = 968.0
+margin_right = 86.513
+margin_bottom = 1143.0
+rect_scale = Vector2( 0.4, 0.3 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" type="TextureButton" parent="Background/StaredBackgroundNode"]
+margin_left = -325.093
+margin_top = 967.726
+margin_right = -125.093
+margin_bottom = 1142.73
+rect_scale = Vector2( 0.4, 0.3 )
+focus_mode = 0
+toggle_mode = true
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 35 )
+texture_pressed = ExtResource( 34 )
+texture_focused = ExtResource( 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="TextureButton" parent="Background/StaredBackgroundNode"]
+margin_left = -536.0
+margin_top = 968.0
+margin_right = -364.0
+margin_bottom = 1135.0
+rect_scale = Vector2( 0.4, 0.3 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 25 )
+texture_pressed = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bkd_tween" type="Tween" parent="Background/StaredBackgroundNode"]
+
+[node name="ScoreCounter" type="RichTextLabel" parent="Background/StaredBackgroundNode"]
+margin_left = -576.0
+margin_top = 60.0
+margin_bottom = 160.0
+custom_fonts/normal_font = ExtResource( 27 )
+custom_colors/default_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/selection_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_selected = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_shadow = Color( 0.745098, 0.654902, 0.458824, 1 )
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="Background/StaredBackgroundNode"]
+position = Vector2( -194.307, 937.046 )
+amount = 100
+lifetime = 1.5
+explosiveness = 0.1
+randomness = 1.0
+process_material = SubResource( 8 )
+
+[node name="Logs" type="Sprite" parent="Background/StaredBackgroundNode"]
+position = Vector2( -191.477, 962.258 )
+scale = Vector2( 2.34264, 1.88614 )
+texture = ExtResource( 28 )
+
+[node name="Timer" type="Timer" parent="Background/StaredBackgroundNode"]
+
+[node name="BossFightBackground" type="Node2D" parent="Background"]
+position = Vector2( -291, 512 )
+script = ExtResource( 40 )
+
+[node name="Back2" type="TextureButton" parent="Background/BossFightBackground"]
+margin_left = 180.0
+margin_top = 450.0
+margin_right = 380.0
+margin_bottom = 625.0
+rect_scale = Vector2( 0.4, 0.3 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause2" type="TextureButton" parent="Background/BossFightBackground"]
+margin_left = -30.0
+margin_top = 450.0
+margin_right = 142.0
+margin_bottom = 625.0
+rect_scale = Vector2( 0.4, 0.3 )
+focus_mode = 0
+toggle_mode = true
+enabled_focus_mode = 0
+keep_pressed_outside = true
+texture_normal = ExtResource( 35 )
+texture_pressed = ExtResource( 34 )
+texture_focused = ExtResource( 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart2" type="TextureButton" parent="Background/BossFightBackground"]
+margin_left = -250.0
+margin_top = 450.0
+margin_right = -78.0
+margin_bottom = 617.0
+rect_scale = Vector2( 0.4, 0.3 )
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 25 )
+texture_pressed = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D" type="Particles2D" parent="Background/BossFightBackground"]
+position = Vector2( 100, 420 )
+z_index = 1
+amount = 100
+lifetime = 1.5
+explosiveness = 0.1
+randomness = 1.0
+process_material = SubResource( 8 )
+
+[node name="Logs2" type="Sprite" parent="Background/BossFightBackground"]
+modulate = Color( 0.517647, 0.478431, 0.329412, 1 )
+position = Vector2( 100, 450 )
+scale = Vector2( 2.34264, 1.88614 )
+z_index = 1
+texture = ExtResource( 28 )
+
+[node name="Character" type="AnimatedSprite" parent="Background/BossFightBackground"]
+position = Vector2( -40, 310 )
+scale = Vector2( 0.752, 0.67 )
+frames = SubResource( 9 )
+centered = false
+
+[node name="Background" type="Sprite" parent="Background/BossFightBackground"]
+z_index = -1
+texture = ExtResource( 36 )
+
+[node name="Timer" type="Timer" parent="Background/BossFightBackground"]
+
+[node name="bkd_tween" type="Tween" parent="Background/BossFightBackground"]
+
+[node name="UI" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Sling" type="Label" parent="UI"]
+margin_left = -85.303
+margin_top = 70.3112
+margin_right = 685.697
+margin_bottom = 190.311
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+text = "Sling"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shooter" type="Label" parent="UI"]
+margin_left = -85.3672
+margin_top = 171.785
+margin_right = 685.634
+margin_bottom = 291.785
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+text = "Shooter"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu1Buttons" type="Node2D" parent="UI"]
+script = ExtResource( 10 )
+
+[node name="MainMenuNode" type="Node2D" parent="UI/Menu1Buttons"]
+script = ExtResource( 11 )
+
+[node name="MainMenu" type="VBoxContainer" parent="UI/Menu1Buttons/MainMenuNode"]
+margin_left = 1.0
+margin_top = 450.0
+margin_right = 577.0
+margin_bottom = 830.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="UI/Menu1Buttons/MainMenuNode/MainMenu"]
+margin_right = 576.0
+margin_bottom = 67.0
+focus_mode = 0
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "Start"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speedrun" type="Button" parent="UI/Menu1Buttons/MainMenuNode/MainMenu"]
+margin_top = 71.0
+margin_right = 576.0
+margin_bottom = 138.0
+focus_mode = 0
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "SpeedRun"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Upgrade" type="Button" parent="UI/Menu1Buttons/MainMenuNode/MainMenu"]
+margin_top = 142.0
+margin_right = 576.0
+margin_bottom = 209.0
+focus_mode = 0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "Upgrade"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Difficulty" type="Button" parent="UI/Menu1Buttons/MainMenuNode/MainMenu"]
+margin_top = 213.0
+margin_right = 576.0
+margin_bottom = 280.0
+focus_mode = 0
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "Difficulty"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BossFight" type="Button" parent="UI/Menu1Buttons/MainMenuNode/MainMenu"]
+margin_top = 284.0
+margin_right = 576.0
+margin_bottom = 351.0
+focus_mode = 0
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "Boss Fights"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="move_tween" type="Tween" parent="UI/Menu1Buttons/MainMenuNode"]
+
+[node name="UpgradeMenuNode" type="Node2D" parent="UI/Menu1Buttons"]
+position = Vector2( 576, 0 )
+script = ExtResource( 12 )
+
+[node name="Back2" type="Button" parent="UI/Menu1Buttons/UpgradeMenuNode"]
+margin_left = 124.681
+margin_top = 322.629
+margin_right = 441.681
+margin_bottom = 409.629
+focus_mode = 0
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "Back"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Menu1Buttons/UpgradeMenuNode"]
+margin_left = 140.0
+margin_top = 460.0
+margin_right = 716.0
+margin_bottom = 973.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpgradeMenu" type="VBoxContainer" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer"]
+margin_right = 291.0
+margin_bottom = 1751.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GunContainer" type="VBoxContainer" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu"]
+margin_right = 291.0
+margin_bottom = 581.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboveSpace" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/GunContainer"]
+margin_right = 291.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.733333, 0.556863, 0, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gun" type="Button" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/GunContainer"]
+margin_top = 86.0
+margin_right = 291.0
+margin_bottom = 153.0
+focus_mode = 0
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color_disabled = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_color = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_color_hover = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_color_pressed = Color( 0.847059, 0.905882, 0.596078, 1 )
+enabled_focus_mode = 0
+text = "Sling"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/GunContainer"]
+margin_top = 157.0
+margin_right = 291.0
+margin_bottom = 239.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.847059, 0.905882, 0.596078, 1 )
+text = "just a gun"
+align = 1
+
+[node name="Stats" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/GunContainer"]
+margin_top = 243.0
+margin_right = 291.0
+margin_bottom = 410.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.847059, 0.905882, 0.596078, 1 )
+text = "damage - 10
+reload - 1"
+align = 1
+
+[node name="BelowSpace" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/GunContainer"]
+margin_top = 414.0
+margin_right = 291.0
+margin_bottom = 581.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.733333, 0.556863, 0, 1 )
+text = "
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rocket" type="VBoxContainer" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu"]
+margin_top = 585.0
+margin_right = 291.0
+margin_bottom = 1166.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboveSpace" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Rocket"]
+margin_right = 291.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.733333, 0.556863, 0, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rocket" type="Button" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Rocket"]
+margin_top = 86.0
+margin_right = 291.0
+margin_bottom = 153.0
+focus_mode = 0
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color_disabled = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_color = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_color_hover = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_color_pressed = Color( 0.847059, 0.905882, 0.596078, 1 )
+enabled_focus_mode = 0
+text = "Rocket"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Rocket"]
+margin_top = 157.0
+margin_right = 291.0
+margin_bottom = 239.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.847059, 0.905882, 0.596078, 1 )
+text = "it goes boom"
+align = 1
+
+[node name="Stats" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Rocket"]
+margin_top = 243.0
+margin_right = 291.0
+margin_bottom = 410.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_outline_modulate = Color( 0.847059, 0.905882, 0.596078, 1 )
+text = "damage - 20
+reload - 5"
+align = 1
+
+[node name="BelowSpace" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Rocket"]
+margin_top = 414.0
+margin_right = 291.0
+margin_bottom = 581.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+text = "
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Laser" type="VBoxContainer" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu"]
+margin_top = 1170.0
+margin_right = 291.0
+margin_bottom = 1751.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboveSpace" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Laser"]
+margin_right = 291.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.733333, 0.556863, 0, 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Laser" type="Button" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Laser"]
+margin_top = 86.0
+margin_right = 291.0
+margin_bottom = 153.0
+focus_mode = 0
+custom_fonts/font = SubResource( 17 )
+custom_colors/font_color_disabled = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_color = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_color_hover = Color( 0.847059, 0.905882, 0.596078, 1 )
+custom_colors/font_color_pressed = Color( 0.847059, 0.905882, 0.596078, 1 )
+enabled_focus_mode = 0
+text = "Laser"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Laser"]
+margin_top = 157.0
+margin_right = 291.0
+margin_bottom = 239.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.847059, 0.905882, 0.596078, 1 )
+text = "shots lasers"
+align = 1
+
+[node name="Stats" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Laser"]
+margin_top = 243.0
+margin_right = 291.0
+margin_bottom = 410.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.847059, 0.905882, 0.596078, 1 )
+text = "damage - 50
+reload - 2"
+align = 1
+
+[node name="BelowSpace" type="Label" parent="UI/Menu1Buttons/UpgradeMenuNode/ScrollContainer/UpgradeMenu/Laser"]
+margin_top = 414.0
+margin_right = 291.0
+margin_bottom = 581.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.733333, 0.556863, 0, 1 )
+text = "
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContainerBackground" type="Sprite" parent="UI/Menu1Buttons/UpgradeMenuNode"]
+modulate = Color( 0, 0, 0, 0.294118 )
+position = Vector2( 281.682, 705.409 )
+scale = Vector2( 1.08888, 1.07788 )
+z_index = -1
+texture = ExtResource( 16 )
+
+[node name="move_tween" type="Tween" parent="UI/Menu1Buttons/UpgradeMenuNode"]
+
+[node name="DifficultyMenuNode" type="Node2D" parent="UI/Menu1Buttons"]
+position = Vector2( 576, 0 )
+script = ExtResource( 33 )
+
+[node name="Easy" type="Button" parent="UI/Menu1Buttons/DifficultyMenuNode"]
+margin_top = 450.0
+margin_right = 576.0
+margin_bottom = 550.0
+focus_mode = 0
+custom_fonts/font = SubResource( 18 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "Easy"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medium" type="Button" parent="UI/Menu1Buttons/DifficultyMenuNode"]
+margin_top = 520.0
+margin_right = 576.0
+margin_bottom = 620.0
+focus_mode = 0
+custom_fonts/font = SubResource( 18 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "medium"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hard" type="Button" parent="UI/Menu1Buttons/DifficultyMenuNode"]
+margin_top = 590.0
+margin_right = 576.0
+margin_bottom = 690.0
+focus_mode = 0
+custom_fonts/font = SubResource( 18 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "hard"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Impossible" type="Button" parent="UI/Menu1Buttons/DifficultyMenuNode"]
+margin_top = 660.0
+margin_right = 576.0
+margin_bottom = 760.0
+focus_mode = 0
+custom_fonts/font = SubResource( 18 )
+custom_colors/font_color_disabled = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_hover = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_pressed = Color( 0.745098, 0.654902, 0.458824, 1 )
+enabled_focus_mode = 0
+text = "Stufan"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="move_tween" type="Tween" parent="UI/Menu1Buttons/DifficultyMenuNode"]
+
+[node name="ui_tween" type="Tween" parent="UI"]
+
+[node name="Score" type="Node2D" parent="."]
+
+[node name="BossFIghtEmitters" type="Node2D" parent="."]
+position = Vector2( 576, 0 )
+script = ExtResource( 44 )
+
+[node name="BossEmitter" type="Node2D" parent="BossFIghtEmitters"]
+position = Vector2( -288, -100 )
+
+[node name="Timer" type="Timer" parent="BossFIghtEmitters"]
+
+[node name="Tween" type="Tween" parent="BossFIghtEmitters"]
+
+[node name="PlayerEmitter" type="Node2D" parent="."]
+position = Vector2( 261.323, 884.708 )
+script = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="PlayerEmitter"]
+
+[node name="archer" type="Node2D" parent="PlayerEmitter"]
+
+[node name="Timer" type="Timer" parent="PlayerEmitter"]
+
+[node name="EnemyEmitters" type="Node2D" parent="."]
+position = Vector2( 576, 0 )
+script = ExtResource( 3 )
+
+[node name="emt1" type="Node2D" parent="EnemyEmitters"]
+position = Vector2( -519.287, -102.467 )
+
+[node name="emt2" type="Node2D" parent="EnemyEmitters"]
+position = Vector2( -430.478, -103.7 )
+
+[node name="emt3" type="Node2D" parent="EnemyEmitters"]
+position = Vector2( -326.867, -103.7 )
+
+[node name="emt4" type="Node2D" parent="EnemyEmitters"]
+position = Vector2( -238.058, -104.934 )
+
+[node name="emt5" type="Node2D" parent="EnemyEmitters"]
+position = Vector2( -143.082, -107.401 )
+
+[node name="emt6" type="Node2D" parent="EnemyEmitters"]
+position = Vector2( -54.2723, -102.467 )
+
+[node name="Timer" type="Timer" parent="EnemyEmitters"]
+
+[node name="Tween" type="Tween" parent="EnemyEmitters"]
+
+[node name="MobTimer" type="Timer" parent="EnemyEmitters"]
+
+[node name="Global" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="GameOverScreen" type="Node2D" parent="."]
+position = Vector2( -1024, 0 )
+script = ExtResource( 7 )
+
+[node name="ScoreLabel" type="RichTextLabel" parent="GameOverScreen"]
+margin_top = 280.0
+margin_right = 576.0
+margin_bottom = 780.0
+custom_fonts/normal_font = SubResource( 19 )
+custom_colors/default_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/selection_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_selected = Color( 0.745098, 0.654902, 0.458824, 1 )
+custom_colors/font_color_shadow = Color( 0.745098, 0.654902, 0.458824, 1 )
+script = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game" type="Label" parent="GameOverScreen"]
+margin_top = 80.0
+margin_right = 574.0
+margin_bottom = 245.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+text = "Game
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Over" type="Label" parent="GameOverScreen"]
+margin_left = 2.0
+margin_top = 160.0
+margin_right = 574.0
+margin_bottom = 360.0
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 0.745098, 0.654902, 0.458824, 1 )
+text = "Over
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="GameOverScreen"]
+[connection signal="pressed" from="Background/StaredBackgroundNode/Back" to="UI/Menu1Buttons" method="BackFromStartPressed"]
+[connection signal="pressed" from="Background/StaredBackgroundNode/Back" to="." method="BackPressed"]
+[connection signal="pressed" from="Background/StaredBackgroundNode/Back" to="Background" method="BackPressed"]
+[connection signal="pressed" from="Background/StaredBackgroundNode/Pause" to="." method="PausePressed"]
+[connection signal="pressed" from="Background/StaredBackgroundNode/Restart" to="." method="RestartPressed"]
+[connection signal="timeout" from="Background/StaredBackgroundNode/Timer" to="Background/StaredBackgroundNode" method="TimerTImeout"]
+[connection signal="pressed" from="Background/BossFightBackground/Back2" to="." method="BackFromBossFight"]
+[connection signal="pressed" from="Background/BossFightBackground/Back2" to="Background" method="BackFromBossFight"]
+[connection signal="pressed" from="Background/BossFightBackground/Pause2" to="." method="PausePressed"]
+[connection signal="pressed" from="Background/BossFightBackground/Restart2" to="." method="RestartPressed"]
+[connection signal="timeout" from="Background/BossFightBackground/Timer" to="Background/BossFightBackground" method="TimerTimeout"]
+[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Start" to="UI/Menu1Buttons" method="StartPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Start" to="." method="StartPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Start" to="Background" method="StartPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Speedrun" to="UI/Menu1Buttons" method="SpeedrunPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Upgrade" to="UI/Menu1Buttons" method="UpgradePressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Difficulty" to="UI/Menu1Buttons" method="DifficultyPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/BossFight" to="." method="BossFightPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/BossFight" to="Background" method="BossFightPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/UpgradeMenuNode/Back2" to="UI/Menu1Buttons" method="BackPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/DifficultyMenuNode/Easy" to="UI/Menu1Buttons" method="EasyPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/DifficultyMenuNode/Medium" to="UI/Menu1Buttons" method="MediumPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/DifficultyMenuNode/Hard" to="UI/Menu1Buttons" method="HardPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/DifficultyMenuNode/Impossible" to="UI/Menu1Buttons" method="ImpossiblePressed"]
+[connection signal="timeout" from="BossFIghtEmitters/Timer" to="BossFIghtEmitters" method="TimerTimeout"]
+[connection signal="timeout" from="PlayerEmitter/Timer" to="PlayerEmitter" method="WeaponReloaded"]
+[connection signal="timeout" from="EnemyEmitters/Timer" to="EnemyEmitters" method="TimerTimeout"]
+[connection signal="timeout" from="EnemyEmitters/MobTimer" to="EnemyEmitters" method="AddAnotherMobTimerTimeout"]
