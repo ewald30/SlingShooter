@@ -42,8 +42,6 @@ func beginGame(state):
 		timer.set_wait_time(global.emit_time)
 		mob_timer.start()
 		timer.start()
-	else:
-		timer.stop()
 
 func TimerTimeout():
 	if global.game_paused:

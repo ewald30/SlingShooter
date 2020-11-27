@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var boss_menu = false
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -23,6 +23,7 @@ func QuitPressed():
 
 
 func StartPressed():
+	boss_menu = false
 	get_node("UI").move(Vector2(576,0))
 	get_node("EnemyEmitters").move(Vector2(576,-100))
 	get_node("EnemyEmitters").beginGame(false)
@@ -42,7 +43,10 @@ func BackPressed():
 
 func RestartPressed():
 	BackPressed()
-	StartPressed()
+	if boss_menu == true:
+		BossFightPressed()
+	else:
+		StartPressed()
 
 func GameOver():
 	get_node("EnemyEmitters").move(Vector2(-576,-100))
@@ -66,6 +70,7 @@ func PausePressed():
 
 
 func BossFightPressed():
+	boss_menu = true
 	get_node("UI").move(Vector2(576,0))
 	get_node("BossFIghtEmitters").move(Vector2(288,-100))
 	global.game_started = false

@@ -47,8 +47,7 @@ func _input(event):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT) and global.game_started == true and event.position.y < 900:
 		
 		shooting = true
-		if event.position.x > 300:
-			print(event.position.x)
+		if event.position.x > 400:
 			turned_left_right = "right"
 		elif event.position.x < 160:
 			turned_left_right = "left"
