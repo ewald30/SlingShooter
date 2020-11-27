@@ -61,6 +61,5 @@ func TimerTimeout():
 	#	When the animation left/right stops after a given amount of time
 	#		( see function _ready() )
 	#	We reset the animation back to the idle one
-	print("asdaasdasdasdasdasd")
 	$Character.play(turned_left_right)
 	timer.start()

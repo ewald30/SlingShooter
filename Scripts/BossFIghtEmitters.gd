@@ -45,6 +45,7 @@ func shoot(position):
 	projectile_instance.position = position
 	projectile_instance.position.y += 40
 	projectile_instance.YSpeed = 7
+	projectile_instance.XSpeed = 0
 	#projectile_instance.XSpeed = 0
 	add_child(projectile_instance)
 	projectile_instance.global_translate(Vector2(0,0))
