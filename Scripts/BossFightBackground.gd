@@ -2,6 +2,7 @@ extends Node2D
 
 onready var global = get_node("/root/Global")
 onready var timer = get_node("Timer")
+var shooting = false
 
 #	A flag which represents the animation that has to play based
 #		on a cposition x
@@ -17,6 +18,7 @@ func _ready():
 	#	By defaul the animation "idle" is playing
 	$Character.play("idle")
 	timer.set_wait_time(0.3)
+	timer.start()
 
 
 func move(target):
@@ -27,21 +29,23 @@ func move(target):
 
 func _process(delta):
 	#	Play the animation in each frame based on the flag
-	$Character.play(turned_left_right)
+	if Input.is_action_just_released("click"):
+		print("asdasdasdasdasdasdasdas")
+		shooting = false
+		turned_left_right = "idle"
+	pass
 
 func _input(event):
 	
 	# We calculate in which direction the player has to turn
 	#	Based on the coordinate of x
 	# Then set the flag accordingly
-	if event is InputEventMouseButton and event.pressed == false and global.game_started == true:
-		if event.position.x > 300:
-			print(event.position.x)
+	if Input.is_mouse_button_pressed(BUTTON_LEFT) and global.game_started == true and event.position.y < 900:
+		shooting = true
+		if event.position.x > 350:
 			turned_left_right = "right"
-			timer.start()
-		elif event.position.x < 160:
+		elif event.position.x < 100:
 			turned_left_right = "left"
-			timer.start()
 		else:
 			turned_left_right = "idle"
 
@@ -57,4 +61,6 @@ func TimerTimeout():
 	#	When the animation left/right stops after a given amount of time
 	#		( see function _ready() )
 	#	We reset the animation back to the idle one
-	turned_left_right = "idle"
+	print("asdaasdasdasdasdasd")
+	$Character.play(turned_left_right)
+	timer.start()

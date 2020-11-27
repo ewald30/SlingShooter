@@ -49,6 +49,8 @@ func _process(delta):
 	
 	if global.game_over == true:
 		queue_free()
+	if global.game_paused == true:
+		return
 		
 		
 	#	If the boss is beaten stop the animation

@@ -39,6 +39,8 @@ func _process(delta):
 		return
 
 func shoot(position):
+	if global.game_paused == true:
+		return
 	var projectile_instance = projectile.instance()
 	projectile_instance.position = position
 	projectile_instance.position.y += 40
