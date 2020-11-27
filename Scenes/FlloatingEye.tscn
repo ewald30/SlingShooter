@@ -121,7 +121,7 @@ script = ExtResource( 12 )
 [node name="FloatingEye" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 16
+frame = 12
 playing = true
 
 [node name="FloatingEyeArea2D" type="Area2D" parent="FloatingEye"]

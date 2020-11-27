@@ -828,6 +828,8 @@ script = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="PlayerEmitter"]
 
+[node name="AnimationTImer" type="Timer" parent="PlayerEmitter"]
+
 [node name="EnemyEmitters" type="Node2D" parent="."]
 position = Vector2( 576, 0 )
 script = ExtResource( 3 )
@@ -907,9 +909,9 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="GameOverScreen"]
-[connection signal="pressed" from="Background/StaredBackgroundNode/Back" to="UI/Menu1Buttons" method="BackFromStartPressed"]
 [connection signal="pressed" from="Background/StaredBackgroundNode/Back" to="." method="BackPressed"]
 [connection signal="pressed" from="Background/StaredBackgroundNode/Back" to="Background" method="BackPressed"]
+[connection signal="pressed" from="Background/StaredBackgroundNode/Back" to="UI/Menu1Buttons" method="BackFromStartPressed"]
 [connection signal="pressed" from="Background/StaredBackgroundNode/Pause" to="." method="PausePressed"]
 [connection signal="pressed" from="Background/StaredBackgroundNode/Restart" to="." method="RestartPressed"]
 [connection signal="timeout" from="Background/StaredBackgroundNode/Timer" to="Background/StaredBackgroundNode" method="TimerTImeout"]
@@ -918,9 +920,9 @@ __meta__ = {
 [connection signal="pressed" from="Background/BossFightBackground/Pause2" to="." method="PausePressed"]
 [connection signal="pressed" from="Background/BossFightBackground/Restart2" to="." method="RestartPressed"]
 [connection signal="timeout" from="Background/BossFightBackground/Timer" to="Background/BossFightBackground" method="TimerTimeout"]
-[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Start" to="UI/Menu1Buttons" method="StartPressed"]
 [connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Start" to="." method="StartPressed"]
 [connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Start" to="Background" method="StartPressed"]
+[connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Start" to="UI/Menu1Buttons" method="StartPressed"]
 [connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Speedrun" to="UI/Menu1Buttons" method="SpeedrunPressed"]
 [connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Upgrade" to="UI/Menu1Buttons" method="UpgradePressed"]
 [connection signal="pressed" from="UI/Menu1Buttons/MainMenuNode/MainMenu/Difficulty" to="UI/Menu1Buttons" method="DifficultyPressed"]
@@ -933,5 +935,6 @@ __meta__ = {
 [connection signal="pressed" from="UI/Menu1Buttons/DifficultyMenuNode/Impossible" to="UI/Menu1Buttons" method="ImpossiblePressed"]
 [connection signal="timeout" from="BossFIghtEmitters/Timer" to="BossFIghtEmitters" method="TimerTimeout"]
 [connection signal="timeout" from="PlayerEmitter/Timer" to="PlayerEmitter" method="WeaponReloaded"]
+[connection signal="timeout" from="PlayerEmitter/AnimationTImer" to="PlayerEmitter" method="AnimationTimerTImeOut"]
 [connection signal="timeout" from="EnemyEmitters/Timer" to="EnemyEmitters" method="TimerTimeout"]
 [connection signal="timeout" from="EnemyEmitters/MobTimer" to="EnemyEmitters" method="AddAnotherMobTimerTimeout"]

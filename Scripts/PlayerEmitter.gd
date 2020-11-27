@@ -57,6 +57,9 @@ func _process(delta):
 		# Using this, we multiply with our selected speed
 		#	And we get the rate at which x and y coordinates
 		#	of our projectile grows in a frame (velocity)
+
+		
+		
 func _input(event):
 	if global.game_paused:
 		return
